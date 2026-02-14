@@ -1,0 +1,16 @@
+Ambiente do ubuntu só instala biblioteca em ambiente virtual então:
+
+#suporte a ambientes(se ainda não tiver):
+    sudo apt update
+    sudo apt install python3-venv -y
+
+#Criar o ambiente 
+    python3 -m venv venv
+
+#Ative o ambiente
+    source venv/bin/activate
+
+#desativar 
+    deactivate
+
+    
