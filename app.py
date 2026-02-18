@@ -1,6 +1,5 @@
-from flask import Flask, request, jsonify 
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///commerce.db'
 
@@ -59,6 +58,17 @@ def update_product(product_id):
         product.description = data['description']
     db.session.commit()
     return jsonify({'message': 'Produto atualizado com sucesso!'}), 200
+
+#não testei
+@app.route('/api/products', methods=['GET'])
+def list_products():
+    products = Product.query.all()
+    return jsonify([{
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        'description': product.description
+    } for product in products]), 200
 
 
 @app.route('/')
